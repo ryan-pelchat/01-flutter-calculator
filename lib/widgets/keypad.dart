@@ -8,7 +8,7 @@ class Keypad extends StatelessWidget {
   */
   final Map<String, Object> genParam;
   final List<List<Map<String, Object>>> btnArr;
-  final List<double> size; // size 2 first is width second is height
+  final List<double> size; // size of 2, first is width second is height
   final Function onPressed;
 
   Keypad(
