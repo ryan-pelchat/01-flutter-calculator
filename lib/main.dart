@@ -10,6 +10,7 @@ void main() {
 }
 
 //TODO maybe try to implement a way to click and change the text
+//TODO more documentation
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,14 +20,6 @@ class MyApp extends StatelessWidget {
       title: 'Calculator',
       theme: ThemeData(
         // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Calculator'),
@@ -117,33 +110,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  //void _deletePastEntry()
   void _currFontSize() {
     //TODO these calculations are not perfect
-    // double available = (MediaQuery.of(context).size.width - 60);
-    // double width = (1.25 * (_currTxtStr.length) * (_currFont / 2));
     double temp =
         ((MediaQuery.of(context).size.width) - 60) / (_currTxtStr.length) * 1.7;
-    // print('$_currFont | $available | $temp');
-    // print("${_currTxtStr.length}");
     setState(() {
-      // if (available < width && _currFont <= 20) {
-      //   _currFont--;
-      // } else if (_currFont < 20 &&
-      //     (available >= (1.25 * (_currTxtStr.length + 3) * (_currFont / 2)))) {
-      //   _currFont++;
-      // }
       if (temp <= 25) {
         _currFont = temp;
       }
     });
-    // available = (MediaQuery.of(context).size.width - 60);
-    // width = (1.25 * _currTxtStr.length * (_currFont / 2));
-    // print('$_currFont | $available < $width');
-    // print(temp);
-    // print("--------");
-    //1.25 * _currTxtStr.length
-    //
   }
 
   @override
@@ -165,7 +140,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       body: Center(
         child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Container(
@@ -228,41 +202,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-
-            // Container(
-            //   height: (MediaQuery.of(context).size.height -
-            //           appBar.preferredSize.height -
-            //           MediaQuery.of(context).padding.top) *
-            //       0.30,
-            //   child: LayoutBuilder(
-            //       builder: (BuildContext cxt, BoxConstraints constraints) {
-            //     return ElevatedButton(
-            //       child: Text("placeholder2"),
-            //       onPressed: () {},
-            // style: ButtonStyle(
-            //   minimumSize: MaterialStateProperty.all(
-            //     Size(constraints.maxWidth - 10,
-            //         constraints.maxHeight - 10),
-            //     //Size(66, 66)),
-            //   ),
-            //       ),
-            //     );
-            //   }),
-            // ),
-            // Container(
-            //   height: (MediaQuery.of(context).size.height -
-            //           appBar.preferredSize.height -
-            //           MediaQuery.of(context).padding.top) *
-            //       0.30,
-            //   width: MediaQuery.of(context).size.width - 10,
-            //   child: ElevatedButton(
-            //     onPressed: () {},
-            //     child: FittedBox(
-            //       fit: BoxFit.fill,
-            //       child: Text('placeholder'),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

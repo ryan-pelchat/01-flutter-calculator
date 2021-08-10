@@ -38,10 +38,6 @@ class PastEval extends StatelessWidget {
                     onTap: () {
                       copy(this.pastEvals[index]['txt']);
                     },
-                    // title: Row(
-                    //   children: [Text('${this.pastEvals[index]['txt']}')],
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    // ),
                     trailing: LayoutBuilder(
                       builder: (cxt, constraint) {
                         return SizedBox(

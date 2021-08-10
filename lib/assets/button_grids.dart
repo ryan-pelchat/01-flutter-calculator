@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 /*
-BtnGrid is an information class that is needed by the Keypad class
+BtnGrid is an ressource class that is needed by the Keypad class
 */
 
 class BtnGrid {
@@ -8,7 +8,7 @@ class BtnGrid {
     "back": Colors.blue[600],
     'padding': 4,
     'txtc': Colors.black,
-    'size': [5, 4], // square grid size
+    'size': [5, 4], // square grid size, rows by columns
   };
   final List<List<Map<String, Object>>> keypad = [
     [
