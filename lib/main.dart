@@ -10,7 +10,6 @@ void main() {
 }
 
 //TODO maybe try to implement a way to click and change the text
-//TODO more documentation
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,6 +19,14 @@ class MyApp extends StatelessWidget {
       title: 'Calculator',
       theme: ThemeData(
         // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Calculator'),
@@ -46,22 +53,45 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  /*
+  
+  List<String> _currTxtStr = [""];
+    contains current buffer of calculations
+  List<Map<String, Object>> _pastEvals _pastEvals = [];
+    contains the past resuts,
+    map has following format: {'txt': str expression, 'id': unique int id}
+  int _id = 0;
+    a counter for the unique id of every past eval
+  double _currFont = 20;
+    the font size to accomodate window resizing
+
+  */
   List<String> _currTxtStr = [""];
   List<Map<String, Object>> _pastEvals = [];
   int _id = 0;
   double _currFont = 20;
 
   void _currTxt(String input) {
+    /*
+    This method processes keyboard input.
+    */
+
+    // If numbers or operation then add to buffer
     if (!(input == 'Enter' || input == 'Clear' || input == '+/-')) {
       setState(() {
         _currTxtStr.add(input);
       });
     }
+
+    //clear buffer
     if (input == 'Clear') {
       setState(() {
         _currTxtStr = [""];
       });
     }
+
+    // Parse buffer to create value, clear buffer,
+    // add to past result and increment id
     if (input == 'Enter' && _currTxtStr.length > 1) {
       setState(() {
         Parser p = Parser();
@@ -74,6 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
         _currTxtStr = [""];
       });
     }
+
+    //deal with - and + numbers
     if (input == '+/-') {
       setState(() {
         if (_currTxtStr[0] == '-') {
@@ -86,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _removePastEntry(int id) {
+    // Removes a past entry based on its id
     setState(() {
       _pastEvals.removeWhere((element) => element['id'] == id);
       if (_pastEvals.isEmpty) {
@@ -95,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _copyPastEntry(String entry) {
+    // Replaces the current buffer with entry
     setState(() {
       {
         _currTxtStr = entry.split('');
@@ -103,6 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _appendPastEntry(String entry) {
+    // Appends entry to the current buffer
     setState(() {
       {
         _currTxtStr = _currTxtStr + entry.split('');
@@ -111,6 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _currFontSize() {
+    /* Tries to estimate a good size of font based of the available window size
+    */
     //TODO these calculations are not perfect
     double temp =
         ((MediaQuery.of(context).size.width) - 60) / (_currTxtStr.length) * 1.7;
@@ -142,6 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            // Past Eval box
             Container(
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height -
@@ -156,6 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 append: _appendPastEntry,
               ),
             ),
+            // Buffer Bar
             Card(
               borderOnForeground: true,
               elevation: 5,
@@ -183,6 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            // Keyboard
             Container(
               padding: EdgeInsets.all(padKey1),
               height: (MediaQuery.of(context).size.height -

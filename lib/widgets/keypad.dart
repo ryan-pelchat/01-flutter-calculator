@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class Keypad extends StatelessWidget {
-  /* Returns a grid of buttons
-  lsArrayForButtons is a 2D array containing the parameters of the button
-  genParam are the general parameters for the button grid
+  /* Returns a widget of a grid of buttons, ready to be displayed
+
+  btnArr 
+    a 2D array containing the parameters of the button
+  genParam 
+    the general parameters for the button grid
+  size
+    list of size 2. first in list is number of columns and second is rows 
+  onPressed
+    function to return the value of the button
   */
   final Map<String, Object> genParam;
   final List<List<Map<String, Object>>> btnArr;
-  final List<double> size; // size of 2, first is width second is height
+  final List<double> size;
   final Function onPressed;
 
   Keypad(
