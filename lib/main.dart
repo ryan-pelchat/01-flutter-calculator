@@ -171,6 +171,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final EdgeInsets cardMargins =
         EdgeInsets.symmetric(vertical: pad, horizontal: pad + 3);
 
+    final double widthOfWidgets =
+        MediaQuery.of(context).size.width - (2 * padKey1);
+
     _currFontSize();
 
     return Scaffold(
@@ -185,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       appBar.preferredSize.height -
                       MediaQuery.of(context).padding.top) *
                   0.50,
-              width: MediaQuery.of(context).size.width - (2 * padKey1),
+              width: widthOfWidgets,
               child: PastEval(
                 pastEvals: _pastEvals,
                 margin: cardMargins,
@@ -230,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           MediaQuery.of(context).padding.top) *
                       0.40 -
                   (2 * padKey1),
-              width: MediaQuery.of(context).size.width - (2 * padKey1),
+              width: widthOfWidgets,
               child: LayoutBuilder(
                 builder: (BuildContext cxt, BoxConstraints constraints) {
                   return Keypad(
