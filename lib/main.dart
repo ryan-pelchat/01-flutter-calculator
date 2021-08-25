@@ -171,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final EdgeInsets cardMargins =
         EdgeInsets.symmetric(vertical: pad, horizontal: pad + 3);
 
+    // This is the standard width for widgets on the page
     final double widthOfWidgets =
         MediaQuery.of(context).size.width - (2 * padKey1);
 
