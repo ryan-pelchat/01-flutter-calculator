@@ -226,7 +226,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            // Keyboard
+
+            // Testing Container
             Container(
               padding: EdgeInsets.all(padKey1),
               height: (MediaQuery.of(context).size.height -
@@ -235,17 +236,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       0.40 -
                   (2 * padKey1),
               width: widthOfWidgets,
-              child: LayoutBuilder(
-                builder: (BuildContext cxt, BoxConstraints constraints) {
-                  return Keypad(
-                    btnArr: BtnGrid().keypad,
-                    genParam: BtnGrid().keypadParam,
-                    size: [constraints.maxWidth, constraints.maxHeight],
-                    onPressed: _currTxt,
-                  );
-                },
-              ),
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+              child: Text('My Awesome Border'),
             ),
+
+            // Keyboard
+            // Container(
+            //   padding: EdgeInsets.all(padKey1),
+            //   height: (MediaQuery.of(context).size.height -
+            //               appBar.preferredSize.height -
+            //               MediaQuery.of(context).padding.top) *
+            //           0.40 -
+            //       (2 * padKey1),
+            //   width: widthOfWidgets,
+            //   child: LayoutBuilder(
+            //     builder: (BuildContext cxt, BoxConstraints constraints) {
+            //       return Keypad(
+            //         btnArr: BtnGrid().keypad,
+            //         genParam: BtnGrid().keypadParam,
+            //         size: [constraints.maxWidth, constraints.maxHeight],
+            //         onPressed: _currTxt,
+            //       );
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
