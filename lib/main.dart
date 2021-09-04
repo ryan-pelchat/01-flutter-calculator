@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             // Past Eval box
@@ -256,10 +256,10 @@ class _MyHomePageState extends State<MyHomePage> {
             */
             _getMobile() == "mobile"
                 ? Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: pad, horizontal: pad + 3),
-                    //decoration: BoxDecoration(
-                    //  border: Border.all(color: Colors.blueAccent)),
+                    // margin: EdgeInsets.symmetric(
+                    //     vertical: pad, horizontal: pad + 3),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueAccent)),
                     child: Column(
                       children: [
                         Keypad(
@@ -272,25 +272,29 @@ class _MyHomePageState extends State<MyHomePage> {
                                         MediaQuery.of(context).padding.top -
                                         100) *
                                     0.40 -
-                                (2 * padKey1) -
-                                40
+                                (2 * padKey1) //-
+                            //40
                           ],
                           onPressed: _currTxt,
                         ),
-                        SizedBox(height: double.infinity),
+
+                        // SizedBox(
+                        //   height: double.infinity,
+                        //   child: Text("wowTest"),
+                        // ),
                       ],
                     ),
                   )
                 : Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: pad, horizontal: pad + 3),
-                    //decoration: BoxDecoration(
-                    //  border: Border.all(color: Colors.amberAccent)),
+                    // margin: EdgeInsets.symmetric(
+                    //     vertical: pad, horizontal: pad + 3),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.amberAccent)),
                     child: Keypad(
                       btnArr: BtnGrid().keypad,
                       genParam: BtnGrid().keypadParam,
                       size: [
-                        widthOfWidgets - 15,
+                        widthOfWidgets - 15 - 40,
                         (MediaQuery.of(context).size.height -
                                     appBar.preferredSize.height -
                                     MediaQuery.of(context).padding.top -
