@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
-import 'package:universal_html/html.dart' as html;
 
 import './widgets/keypad.dart';
 import './widgets/past_eval.dart';
@@ -10,9 +9,7 @@ void main() {
   runApp(MyApp());
 }
 
-//TODO try to implement a way to click and change the text
-//TODO fix remaining bug about accessing web app on mobile browser directly on
-//TODO reflow the widgets when the screen is rotated sideways
+//TODO try to implement a way to click and change the text on desktop platform
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -161,23 +158,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  String _getMobile() {
-    /* This method returns the browser type as a string. 
-    "mobile" if the app is running on a mobile browser
-    "desktop" if the app is running on a desktop browser
-    credits to this answer: https://github.com/flutter/flutter/issues/41311
-    */
-    final userAgent = html.window.navigator.userAgent.toString().toLowerCase();
-    // smartphone
-    if (userAgent.contains("iphone")) {
-      return "mobile";
-    } else if (userAgent.contains("android")) {
-      return "mobile";
-    } else {
-      return "desktop";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
@@ -247,64 +227,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-
-            /* 
-            The following code chunk is to fix a weird bug where the keypad 
-            widget would not display properly. The remaining bug is accessing 
-            the web app with a mobile browser using the direct github.io link.
-            If the web app is embedded in a webpage it is properly displayed.
-            */
-            _getMobile() == "mobile"
-                ? Container(
-                    // margin: EdgeInsets.symmetric(
-                    //     vertical: pad, horizontal: pad + 3),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)),
-                    child: Column(
-                      children: [
-                        Keypad(
-                          btnArr: BtnGrid().keypad,
-                          genParam: BtnGrid().keypadParam,
-                          size: [
-                            widthOfWidgets - 15 - 40,
-                            (MediaQuery.of(context).size.height -
-                                        appBar.preferredSize.height -
-                                        MediaQuery.of(context).padding.top -
-                                        100) *
-                                    0.40 -
-                                (2 * padKey1) //-
-                            //40
-                          ],
-                          onPressed: _currTxt,
-                        ),
-
-                        // SizedBox(
-                        //   height: double.infinity,
-                        //   child: Text("wowTest"),
-                        // ),
-                      ],
-                    ),
-                  )
-                : Container(
-                    // margin: EdgeInsets.symmetric(
-                    //     vertical: pad, horizontal: pad + 3),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.amberAccent)),
-                    child: Keypad(
-                      btnArr: BtnGrid().keypad,
-                      genParam: BtnGrid().keypadParam,
-                      size: [
-                        widthOfWidgets - 15 - 40,
-                        (MediaQuery.of(context).size.height -
-                                    appBar.preferredSize.height -
-                                    MediaQuery.of(context).padding.top -
-                                    100) *
-                                0.40 -
-                            (2 * padKey1)
-                      ],
-                      onPressed: _currTxt,
-                    ),
-                  ),
+            // Keypad
+            Container(
+              // decoration:
+              //     BoxDecoration(border: Border.all(color: Colors.amberAccent)),
+              child: Keypad(
+                btnArr: BtnGrid().keypad,
+                genParam: BtnGrid().keypadParam,
+                size: [
+                  MediaQuery.of(context).size.width - 20,
+                  (MediaQuery.of(context).size.height -
+                              appBar.preferredSize.height -
+                              MediaQuery.of(context).padding.top) *
+                          0.50 -
+                      75
+                ],
+                onPressed: _currTxt,
+              ),
+            ),
           ],
         ),
       ),

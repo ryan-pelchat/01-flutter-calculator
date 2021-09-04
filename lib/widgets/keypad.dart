@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class Keypad extends StatelessWidget {
   /* Returns a widget of a grid of buttons, ready to be displayed
@@ -26,6 +25,49 @@ class Keypad extends StatelessWidget {
       @required this.size,
       @required this.onPressed});
 
+// This code chunk works, however, it limits the minimum size of the buttons to
+// the size of the font
+  // List<Column> get getButtonls {
+  //   return this.btnArr.map((ls) {
+  //     return Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       //mainAxisSize: MainAxisSize.max,
+  //       children: ls.map((mp) {
+  //         return Padding(
+  //           padding:
+  //               EdgeInsets.all((this.genParam['padding'] as int).toDouble()),
+  //           child: ElevatedButton(
+  //             child: Text(
+  //               mp['txt'],
+  //               style: TextStyle(
+  //                   color: genParam['txtc'],
+  //                   fontSize:
+  //                       ((((this.size[0]) / (genParam['size'] as List)[0]) +
+  //                                   ((this.size[1]) /
+  //                                       (genParam['size'] as List)[1])) /
+  //                               2) *
+  //                           0.2),
+  //             ),
+  //             onPressed: () => onPressed(mp['txt']),
+  //             style: ButtonStyle(
+  //               backgroundColor:
+  //                   MaterialStateProperty.all(this.genParam['back']),
+  //               fixedSize: MaterialStateProperty.all(
+  //                 //changed from minimumSize
+  //                 Size(
+  //                     (((this.size[0]) / (genParam['size'] as List)[0]) -
+  //                         (this.genParam['padding'] as int).toDouble() * 2),
+  //                     (((this.size[1]) / (genParam['size'] as List)[1]) -
+  //                         (this.genParam['padding'] as int).toDouble() * 2)),
+  //               ),
+  //             ),
+  //           ),
+  //         );
+  //       }).toList(),
+  //     );
+  //   }).toList();
+  // }
+
   List<SizedBox> get getButtonls {
     return this.btnArr.map((ls) {
       return SizedBox(
@@ -33,7 +75,7 @@ class Keypad extends StatelessWidget {
         height: this.size[1],
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            //mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: ls.map((mp) {
               return Expanded(
                 child: Padding(
@@ -55,11 +97,6 @@ class Keypad extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(this.genParam['back']),
-                      // fixedSize: MaterialStateProperty.all(
-                      //   //changed from minimumSize
-                      //   Size((this.size[0]) / (genParam['size'] as List)[0],
-                      //       (this.size[1]) / (genParam['size'] as List)[1]),
-                      // ),
                     ),
                   ),
                 ),
@@ -72,18 +109,8 @@ class Keypad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      //mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: getButtonls,
     );
-
-    // SizedBox(
-    //   width: this.size[0] - 50,
-    //   height: this.size[1] - 50,
-    //   child: Row(
-    //     //mainAxisSize: MainAxisSize.max,
-    //     children: getButtonls,
-    //   ),
-    // );
   }
 }
