@@ -25,7 +25,7 @@ class PastEval extends StatelessWidget {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("No past history...7"),
+                  Text("No past history..."),
                 ],
               ),
             ),
